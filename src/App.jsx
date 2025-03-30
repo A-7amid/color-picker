@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import SavedColors from "./components/SavedColors";
 import { useColors } from "./context/colors.provider";
 import Alert from "./components/Alert";
@@ -7,6 +7,10 @@ function App() {
     useColors();
 
   const colorRef = useRef();
+
+  useEffect(() => {
+    localStorage.setItem("saved-colors", JSON.stringify(savedColors));
+  }, [savedColors]);
 
   return (
     <div className="flex max-h-full min-h-screen bg-zinc-950 text-white">
